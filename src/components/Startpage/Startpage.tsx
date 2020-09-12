@@ -15,7 +15,7 @@ import AmountSelection, { IValueAmountSelectionProp } from '../AmountSelection/A
 import { userQuestionTypeSelection } from '../../Actions/selection.action';
 import { QuestionsParams, Difficulty, SelectionType } from '../../Actions/types/questions.types';
 import DifficultySelection from '../DifficultySelection/DifficultySelection';
-import { QuestionSelectionValidation, setQuestionInSession } from '../../util';
+import { QuestionSelectionValidation, setAmountEnteredInSession, setQuestionInSession } from '../../util';
 import { isSelectionSuccess } from '../../Actions/isSelectionSuccess.action';
 import { fetchQuestions } from '../../Actions/questions.action';
 import { RootStore } from '../../Store';
@@ -43,7 +43,8 @@ const Startpage: React.FC<IAppProps> = (): ReactElement => {
     
     const amountEntered = (e: React.ChangeEvent<HTMLInputElement>) => { //callback for selecting amount
         const target = e.currentTarget.value;
-        setAmountSelected(parseInt(target, 10))
+        setAmountSelected(parseInt(target)) // set the amount selected in state
+        setAmountEnteredInSession(parseInt(target)) // set the amount in session
     }
     
     const selectCategory = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => { //callback to selecting category
@@ -105,12 +106,12 @@ const Startpage: React.FC<IAppProps> = (): ReactElement => {
     }, [amountSelected, categorySelected, difficultySelected, typeSelected, selectedChallenge])
 
     // storing questions to session
-    useEffect(() => {
-        const setDataSession = async() => {
-            await setQuestionInSession(loading, questions);
-        }
-        setDataSession();
-    }, [questions, loading]) // run this once we have questions
+    // useEffect(() => {
+    //     const setDataSession = async() => {
+    //         await setQuestionInSession(loading, questions);
+    //     }
+    //     setDataSession();
+    // }, [questions, loading]) // run this once we have questions
 
     
 
@@ -143,7 +144,10 @@ const Startpage: React.FC<IAppProps> = (): ReactElement => {
                 </div>
                 <div className={styles.button}>
                     <button disabled={isNotCompleted} onClick={handleSubmitClick} className="primary-button">
-                        <Link to="/questions">Start trivia</Link>
+                        <Link to={{
+                            pathname: "/quiz-app-2/questions",
+                            search: `?amount=${amountSelected}&category=${categorySelected}&difficulty=${difficultySelected}&type=${typeSelected}`
+                        }}>Start trivia</Link>
                     </button>
                 </div>
             </div>

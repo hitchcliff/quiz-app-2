@@ -7,7 +7,7 @@ const NotAvailable = () => {
             <h2>There seems to be no<br/>Question this time :(</h2>
             <div>
                 <button className="primary-button" >
-                    <Link to="/selection">Go back to selection</Link>
+                    <Link to="/quiz-app-2/selection">Go back to selection</Link>
                 </button>
             </div>
         </div>

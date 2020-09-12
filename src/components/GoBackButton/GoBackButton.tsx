@@ -9,7 +9,7 @@ const GoBackButton: React.FC<IGoBackButtonProps> = (props) => {
     const { link } = props;
     return (
         <button className="primary-button" >
-            <Link to={link ? link : "/selection"}>Go back to selection</Link>
+            <Link to={link ? link : "/quiz-app-2/selection"}>Go back to selection</Link>
         </button>
     )
 }

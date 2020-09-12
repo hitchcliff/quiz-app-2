@@ -3,19 +3,23 @@ import styles from './QuestionsPage.module.scss'
 import Sidebar from '../Sidebar/Sidebar'
 import { useDispatch, useSelector } from 'react-redux'
 import { Questions } from '../../Actions/types/questions.types'
-import { getQuestionInSession, checkUserAnswer, setScoreInSession } from '../../util'
+import { getQuestionInSession, checkUserAnswer, setScoreInSession, getSelectionUrlParam, getAmountEnteredInSession } from '../../util'
 import Question from '../Question/Question';
 import { ScoreAction } from '../../Actions/score.action'
 import { CurrentAction } from '../../Actions/current.action'
 import { RootStore } from '../../Store'
 import NotAvailable from '../NotAvailable/NotAvailable'
+import { faPray } from '@fortawesome/free-solid-svg-icons'
+import { fetchQuestions } from '../../Actions/questions.action'
+import { fetchQuestionsThroughURLAction } from '../../Actions/fetchQuestionsThroughURL.action'
+import Finished from '../Finished/Finished'
 
 export type QuestionSessionStorage = { //Session storage type used in setItem
     loading: boolean,
     questions?: Questions[]
 }
 
-const QuestionsPage = () => {
+const QuestionsPage = (props: any) => {
     const dispatch = useDispatch()
     const [data, setData] = useState<QuestionSessionStorage | undefined>(undefined) // list of all data
     const [answers, setAnswers] = useState<string[] | undefined>(undefined);
@@ -25,15 +29,29 @@ const QuestionsPage = () => {
     const [currentScore, setCurrentScore] = useState<number>(0);
     
     const currentIndexAtQuestion = useSelector((state: RootStore) => state.currentIndexAtQuestion); // current index
+    const amount = getAmountEnteredInSession();
 
+    // test
+    const sampleData = useSelector((state: RootStore) => state.fetchQuestionsThroughURL)
+    
     useEffect(() => { // for fetching session   
         // fetch the questions in session
-        const fetchSession = async() => {
-            const result = await getQuestionInSession();
-            setData(result) // set data of 
+        // const fetchSession = async() => {
+        //     const result = await getQuestionInSession();
+        //     setData(result) // set data of 
+        // }
+        // fetchSession()
+
+        const fetchSelection = async() => {
+            const result = await getSelectionUrlParam(props);
+            //fetching API through search params by React Router
+            const fetchAPI = await fetchQuestionsThroughURLAction(result);
+            dispatch(fetchAPI); 
         }
-        fetchSession()
-    }, [dispatch])
+
+        fetchSelection();   
+        setData(sampleData); // set the data
+    }, [sampleData.loading])
 
     useEffect(() => {
        if(!data) return;
@@ -50,7 +68,7 @@ const QuestionsPage = () => {
            const currentQuestion = questions[currentIndex];
            if(!currentQuestion) return;
            mapAnswers(currentQuestion); // map all answers in question
-           currentIndexDispatch()   
+           currentIndexDispatch()  // add the current index to the store 
        } return;
 
    }, [data, currentIndex, dispatch])
@@ -100,16 +118,21 @@ const QuestionsPage = () => {
         // save score in session + 1
         setScoreInSession(currentScore);
     }
+
+    if(!data.questions) return null;
     
     return (
         <div className={styles.container}>
             <div className={styles.question}>
                 {/* Render questions */}
-                {!data.loading && data.questions && mapDataQuestions(currentIndex)}
+                {!data.loading && data && data.questions && amount !== (currentIndex + 1) && mapDataQuestions(currentIndex)}
 
-                {/* Render Error "No Questions" */}
-                {!data.loading && !data.questions && <NotAvailable />}
-            
+                {/* Render NotAvailable */}
+                {!data.questions.length && <NotAvailable/>}
+
+                {/* Render Finished */}
+                {amount === currentIndex + 1 && <Finished/>}
+
             </div>
             {/* Visible props is checking whether we have questions available, if so, show button */}
             <Sidebar next={handleNext} visible={data.questions ? true : false} score={currentScore}/>

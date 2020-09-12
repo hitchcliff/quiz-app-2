@@ -14,7 +14,6 @@ const Finished = () => {
                     <br/>You got <span>{score}</span></h4>
                 <GoBackButton/>
             </div>
-            <Sidebar score={score} />
         </div>
     )
 }

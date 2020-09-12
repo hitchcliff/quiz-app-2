@@ -33,3 +33,28 @@ export const getScoreInSession = () => {
     let result: number = JSON.parse(data);
     return result
 }
+
+// get url selection
+export const getSelectionUrlParam = (props: any) => {
+    let search = props.location.search.split("?")[1].toString();
+    let searchSplit = search.split("&") // split the url param by "&"
+
+    let final = []
+    for(var i=0; i< searchSplit.length; i++) {
+        const splitByEqual = searchSplit[i].split("="); //split the url param by "="
+        final[i] = splitByEqual[1]
+    }
+    return final;
+}
+
+// set amount entered in session
+export const setAmountEnteredInSession = (amount: number) => {
+    sessionStorage.setItem('Amount', JSON.stringify(amount))
+}
+
+// get the amount entered in session
+export const getAmountEnteredInSession = () => {
+    const data: any = sessionStorage.getItem('Amount'); 
+    const result = JSON.parse(data);
+    return result;
+}

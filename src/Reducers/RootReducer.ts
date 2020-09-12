@@ -5,6 +5,7 @@ import { SelectionReducer } from './questions/selections.reducer';
 import { isSelectionSuccessReducer } from './questions/isSelectionSuccess.reducer';
 import { scoreReducer } from './questions/score.reducer';
 import { currentReducer } from './questions/current.reducer';
+import { fetchQuestionsThroughURLReducer } from './questions/fetchQuestionsThroughURL.reducer';
 
 const RootReducer = combineReducers({
     test: testReducer,
@@ -12,7 +13,8 @@ const RootReducer = combineReducers({
     selection: SelectionReducer,
     isSelectionSuccess: isSelectionSuccessReducer,
     currentScore: scoreReducer,
-    currentIndexAtQuestion: currentReducer
+    currentIndexAtQuestion: currentReducer,
+    fetchQuestionsThroughURL: fetchQuestionsThroughURLReducer
 })
 
 export default RootReducer  

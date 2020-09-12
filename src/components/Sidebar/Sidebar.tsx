@@ -4,6 +4,7 @@ import ProgressBar from '../ProgressBar/ProgressBar';
 import ShareCard from '../ShareCard/ShareCard';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../Store';
+import { getAmountEnteredInSession } from '../../util';
 
 interface ISidebarProps {
     next?: Function,
@@ -14,7 +15,7 @@ interface ISidebarProps {
 const Sidebar: React.FC<ISidebarProps> = (props): ReactElement => {
     const { next, visible, score } = props;
     const {currentIndex} = useSelector((state: RootStore) => state.currentIndexAtQuestion)
-    const {amount} = useSelector((state: RootStore) => state.selection);
+    const amount = getAmountEnteredInSession();
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): null | void => {
         if(!next) return;
