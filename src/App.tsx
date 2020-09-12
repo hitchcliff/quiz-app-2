@@ -26,14 +26,14 @@ const App = () => {
       <div className="container">
         <Router>
           <Switch>
-            <Route exact path={["/", "/selection"]} component={Startpage}/>
-            <Route exact path="/">
+            <Route exact path={["/", "/quiz-app-2", "/selection"]} component={Startpage}/>
+            <Route exact path={["/", "/quiz-app-2"]}>
               {isSelectionSuccedded ? <Redirect to="/question"/>
               : <Startpage/>}
             </Route>
             {renderFinishOnceDone()}
-            <Route path="/questions" component={QuestionsPage}/>
-            <Route path="/404" component={NotAvailable} />
+            <Route path={["/questions", "/quiz-app-2"]} component={QuestionsPage}/>
+            <Route path={["/404", "/quiz-app-2"]} component={NotAvailable} />
             
           </Switch>  
         </Router>

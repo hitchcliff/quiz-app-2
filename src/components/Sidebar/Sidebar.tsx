@@ -2,6 +2,8 @@ import React, { ReactElement } from 'react'
 import styles from './Sidebar.module.scss'
 import ProgressBar from '../ProgressBar/ProgressBar';
 import ShareCard from '../ShareCard/ShareCard';
+import { useSelector } from 'react-redux';
+import { RootStore } from '../../Store';
 
 interface ISidebarProps {
     next?: Function,
@@ -11,6 +13,8 @@ interface ISidebarProps {
 
 const Sidebar: React.FC<ISidebarProps> = (props): ReactElement => {
     const { next, visible, score } = props;
+    const {currentIndex} = useSelector((state: RootStore) => state.currentIndexAtQuestion)
+    const {amount} = useSelector((state: RootStore) => state.selection);
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): null | void => {
         if(!next) return;
@@ -21,10 +25,10 @@ const Sidebar: React.FC<ISidebarProps> = (props): ReactElement => {
         <div className={styles.container}>
             <div className={styles.score}>
                 <h4>Score</h4>
-                <h2>{score}</h2>
+                <h2>{score ? score : 0}</h2>
             </div>
             <div className={styles.currentProgress}>
-                <h4>15 out of 50</h4>
+                <h4>{`${currentIndex + 1} out of ${amount}`}</h4>
                 <ProgressBar/>
             </div>
             <div className={styles.shareCard}>

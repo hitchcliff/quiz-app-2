@@ -5,11 +5,16 @@
     font-size: 1rem;
     border: none;
     border-radius: 10px;
-    padding: 15px 20px;
     letter-spacing: 1px;
     box-shadow: $boxShadow1;
     cursor: pointer;
     text-transform: uppercase;
+
+    a {
+        padding: 15px 20px;
+        width: 100%;
+        display: block;
+    }
     
 
     &:visited {

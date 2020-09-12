@@ -53,7 +53,7 @@ const QuestionsPage = () => {
            currentIndexDispatch()   
        } return;
 
-   }, [data, currentIndexAtQuestion, currentIndex, dispatch])
+   }, [data, currentIndex, dispatch])
    
    if(!data) return null; // check if we have data
 
