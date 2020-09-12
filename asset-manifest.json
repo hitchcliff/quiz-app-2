@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/quiz-app-2/static/css/main.9e8586ad.chunk.css",
+    "main.js": "/quiz-app-2/static/js/main.048451d0.chunk.js",
+    "main.js.map": "/quiz-app-2/static/js/main.048451d0.chunk.js.map",
+    "runtime-main.js": "/quiz-app-2/static/js/runtime-main.d6daec7a.js",
+    "runtime-main.js.map": "/quiz-app-2/static/js/runtime-main.d6daec7a.js.map",
+    "static/js/2.2743dc90.chunk.js": "/quiz-app-2/static/js/2.2743dc90.chunk.js",
+    "static/js/2.2743dc90.chunk.js.map": "/quiz-app-2/static/js/2.2743dc90.chunk.js.map",
+    "index.html": "/quiz-app-2/index.html",
+    "precache-manifest.81a745d22c96a579beed4b49dcbfeffe.js": "/quiz-app-2/precache-manifest.81a745d22c96a579beed4b49dcbfeffe.js",
+    "service-worker.js": "/quiz-app-2/service-worker.js",
+    "static/css/main.9e8586ad.chunk.css.map": "/quiz-app-2/static/css/main.9e8586ad.chunk.css.map",
+    "static/js/2.2743dc90.chunk.js.LICENSE.txt": "/quiz-app-2/static/js/2.2743dc90.chunk.js.LICENSE.txt",
+    "static/media/question-mark.svg": "/quiz-app-2/static/media/question-mark.76e11f1b.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d6daec7a.js",
+    "static/js/2.2743dc90.chunk.js",
+    "static/css/main.9e8586ad.chunk.css",
+    "static/js/main.048451d0.chunk.js"
+  ]
+}
