@@ -1,0 +1,10 @@
+@import '../../styles/global';
+.container {
+    input {
+        padding: 15px 30px;
+        border-radius: 20px;
+        outline: none;
+        border: none;
+        box-shadow: $boxShadow1;
+    }
+}

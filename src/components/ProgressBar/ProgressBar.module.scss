@@ -1,0 +1,29 @@
+@import '../../styles/global';
+.progressBar {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    margin-bottom: 10px;
+    .current {
+        position: absolute;
+        top: 0;
+        left: 0;
+        // width: 30%;
+        height: 100%;
+        border-radius: 20px;
+        background-color: $primary;
+        z-index: 43243217;
+        transition: all .3s ease;
+    }
+    .total {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: $primary_light;
+        width: 100%;
+        height: 100%;
+        box-shadow: $boxShadow1;
+        border-radius: 10px;
+        z-index: 0;
+    }
+}

@@ -1,0 +1,30 @@
+@import '../../styles/global';
+.difficulty {
+    margin-top: 30px;
+    ul {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        li {
+            list-style-type: none;
+            margin-right: 10px;
+            padding: 10px 15px;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            color: $primary_light;
+            transition: all .3s ease-in;
+
+            &:hover {
+                background: $primary;
+            }
+
+            &.active {
+                background: $primary;
+                color: white;
+                box-shadow: $boxShadow1;
+            }
+        }
+    }
+}

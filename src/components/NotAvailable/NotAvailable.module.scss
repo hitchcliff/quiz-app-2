@@ -1,0 +1,19 @@
+.container {
+    height: 100%;
+    display: flex;
+    justify-content: center;    
+    flex-direction: column;
+    button {
+        margin-top: 30px;
+        a {
+            color: white;
+            text-decoration: none;
+        }
+    }
+}
+
+@media(max-width: 980px) {
+    .container {
+        align-items: center;
+    }
+}

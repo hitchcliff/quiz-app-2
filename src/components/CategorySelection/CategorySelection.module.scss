@@ -1,0 +1,40 @@
+@import '../../styles/global';
+
+.categoriesContainer {
+    padding: 0;
+    // Overflow scroll Y
+    height: 200px;
+    min-width: 300px;
+    overflow-y: scroll;
+    
+    li {
+        list-style-type: none;
+        padding: $_10Padding;
+        border-radius: 5px;
+        // text-overflow
+        width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        color: $text_color;
+        cursor: pointer;
+        background: white;
+        
+        // transition
+        transition: all .3s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+        &:nth-child(odd) {
+            background: $_ghostWhite;
+        }
+        &:hover {
+            background: $primary;
+            color: white;
+            box-shadow: $boxShadow1;
+        }
+        &.active {
+            background: $primary;
+            color: white;
+            box-shadow: $boxShadow1;
+        }
+    }
+}
