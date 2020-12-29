@@ -1,3 +1,8 @@
+# Installation Instruction
+
+- Run `yarn install` to download all `deps`
+- Run `yarn start` to run the app in localhos
+
 This app is made with the help of technologies as follows:
 * Typescript
 * React & Redux
